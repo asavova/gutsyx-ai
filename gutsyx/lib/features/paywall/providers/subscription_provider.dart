@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 final subscriptionProvider = StateNotifierProvider<SubscriptionNotifier, Offering?>((ref) {
   return SubscriptionNotifier();
@@ -14,19 +13,19 @@ class SubscriptionNotifier extends StateNotifier<Offering?> {
 
   Future<void> _init() async {
     try {
-      final String? apiKey;
+      final String apiKey;
       
-      // Handle platform-specific keys from .env
+      // Using String.fromEnvironment for zero-dependency configuration
       if (Platform.isIOS) {
-        apiKey = dotenv.env['REVENUECAT_API_KEY_IOS'];
+        apiKey = const String.fromEnvironment('REVENUECAT_API_KEY_IOS');
       } else if (Platform.isAndroid) {
-        apiKey = dotenv.env['REVENUECAT_API_KEY_ANDROID'];
+        apiKey = const String.fromEnvironment('REVENUECAT_API_KEY_ANDROID');
       } else {
         throw UnsupportedError('This platform is not supported by GutsyX RevenueCat module.');
       }
 
-      if (apiKey == null || apiKey.isEmpty) {
-        print("GutsyX Error: RevenueCat API Key is missing in .env configuration.");
+      if (apiKey.isEmpty) {
+        print("GutsyX Error: RevenueCat API Key is missing. Build with --dart-define.");
         return;
       }
 
@@ -43,10 +42,9 @@ class SubscriptionNotifier extends StateNotifier<Offering?> {
 
   Future<bool> purchasePackage(Package package) async {
     try {
-
-      final CustomerInfo customerInfo = await Purchases.getCustomerInfo();
-      final hasPro = customerInfo.entitlements.active.containsKey('gutsyX Premium');
-      return hasPro;
+      CustomerInfo customerInfo = await Purchases.getCustomerInfo();
+      // Ensure 'gutsyX Premium' matches your Entitlement ID in the RevenueCat Dashboard
+      return customerInfo.entitlements.active.containsKey('gutsyX Premium');
     } catch (e) {
       print("GutsyX Purchase Module: Transaction failed. Error: $e");
       return false;
