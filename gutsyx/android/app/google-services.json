@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "837795540756",
+    "project_id": "gutsy-d3632",
+    "storage_bucket": "gutsy-d3632.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837795540756:android:175758224e78f857701c01",
+        "android_client_info": {
+          "package_name": "com.example.gutsyx"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRnD-d8LI5lTnNR4pVYSjQfXIhhk_7chI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
