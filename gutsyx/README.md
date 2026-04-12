@@ -7,7 +7,7 @@
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)
 ![Google Gemini](https://img.shields.io/badge/Google%20Gemini-8E75B6?style=flat-square&logo=google&logoColor=white)
 
-GutsyX AI is a privacy-focused digestive health platform built with Flutter. Leveraging Google Gemini 1.5 Flash, it delivers clinical-grade stool analysis while maintaining strict user privacy standards. The innovative **Zero-Storage** architecture ensures sensitive specimen images are processed as byte-streams and never persisted on any server.
+GutsyX AI is a privacy-focused digestive health platform built with Flutter. Leveraging Google Gemini 1.5 Flash, it delivers clinical-grade image analysis while maintaining strict user privacy standards. The innovative **Zero-Storage** architecture ensures sensitive specimen images are processed as byte-streams and never persisted on any server.
 
 ## Table of Contents
 
@@ -46,7 +46,6 @@ GutsyX AI employs a **modular feature-based architecture** designed for scalabil
 
 GutsyX AI utilizes **Google Gemini 1.5 Flash** for clinical-grade analysis:
 
-- **Why Gemini 1.5 Flash?** Lower latency (500-800ms) and cost-effectiveness compared to GPT-4V, with competitive accuracy for image classification tasks
 - **Input Modality**: Multimodal vision-language model capable of analyzing specimen images with contextual metadata
 - **Output Reliability**: Deterministic classification leveraging Bristol Stool Scale (BSS) standardization
 
@@ -73,7 +72,7 @@ Local Cache & Dashboard Render
 
 #### Request Format
 ```dart
-// Specimen analysis request encapsulates:
+// Image analysis request encapsulates:
 // - Base64 encoded image bytes
 // - Metadata: specimen collection date, hydration score
 // - Optional: user-provided health context
